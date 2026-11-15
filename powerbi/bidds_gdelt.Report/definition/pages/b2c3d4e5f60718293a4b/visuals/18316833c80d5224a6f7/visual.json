@@ -1,0 +1,78 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "18316833c80d5224a6f7",
+  "position": {
+    "x": 899.83890667284,
+    "y": 459.72874374346407,
+    "z": 3,
+    "height": 124.90496451636079,
+    "width": 360.32793428541777,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "urls"
+                    }
+                  },
+                  "Property": "Live share"
+                }
+              },
+              "queryRef": "urls.Live share",
+              "nativeQueryRef": "Live share"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Share of checked URLs still live'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2af479ccc4689c10a624",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "urls"
+              }
+            },
+            "Property": "Live share"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

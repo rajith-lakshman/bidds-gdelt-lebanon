@@ -1,0 +1,143 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "4dde3178500e50da9762",
+  "position": {
+    "x": 20.272533507891019,
+    "y": 171.33560577636925,
+    "z": 4,
+    "height": 248.50202364511571,
+    "width": 1239.8943074503668,
+    "tabOrder": 4
+  },
+  "visual": {
+    "visualType": "lineClusteredColumnComboChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "weekly"
+                    }
+                  },
+                  "Property": "iso_week"
+                }
+              },
+              "queryRef": "weekly.iso_week",
+              "nativeQueryRef": "iso_week",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "weekly"
+                    }
+                  },
+                  "Property": "Merged events"
+                }
+              },
+              "queryRef": "weekly.Merged events",
+              "nativeQueryRef": "Merged events"
+            }
+          ]
+        },
+        "Y2": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "weekly"
+                    }
+                  },
+                  "Property": "Case-theme events"
+                }
+              },
+              "queryRef": "weekly.Case-theme events",
+              "nativeQueryRef": "Case-theme events"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'All Lebanon events (bars, left axis) vs case-theme events (line, right axis) by ISO week, 2015'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "fe55288c2b49e4097e07",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "weekly"
+              }
+            },
+            "Property": "iso_week"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8f84893fd2116aa86e86",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "weekly"
+              }
+            },
+            "Property": "Merged events"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c54375bc3525576a302b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "weekly"
+              }
+            },
+            "Property": "Case-theme events"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

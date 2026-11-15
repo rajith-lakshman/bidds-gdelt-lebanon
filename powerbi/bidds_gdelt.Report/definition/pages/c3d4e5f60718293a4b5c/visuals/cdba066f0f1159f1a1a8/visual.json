@@ -1,0 +1,183 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "cdba066f0f1159f1a1a8",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "z": 0,
+    "height": 680,
+    "width": 1240,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "weekly"
+                    }
+                  },
+                  "Property": "iso_week"
+                }
+              },
+              "queryRef": "weekly.iso_week",
+              "nativeQueryRef": "iso_week"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "weekly"
+                    }
+                  },
+                  "Property": "week_start"
+                }
+              },
+              "queryRef": "weekly.week_start",
+              "nativeQueryRef": "week_start"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "weekly"
+                        }
+                      },
+                      "Property": "total_events"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(weekly.total_events)",
+              "nativeQueryRef": "Sum of total_events"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "weekly"
+                        }
+                      },
+                      "Property": "merged_events"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(weekly.merged_events)",
+              "nativeQueryRef": "Sum of merged_events"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "weekly"
+                        }
+                      },
+                      "Property": "case_theme_events"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(weekly.case_theme_events)",
+              "nativeQueryRef": "Sum of case_theme_events"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "weekly"
+                        }
+                      },
+                      "Property": "protest_theme_events"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(weekly.protest_theme_events)",
+              "nativeQueryRef": "Sum of protest_theme_events"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "weekly"
+                        }
+                      },
+                      "Property": "case_theme_avg_tone"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(weekly.case_theme_avg_tone)",
+              "nativeQueryRef": "Average of case_theme_avg_tone"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "weekly"
+                    }
+                  },
+                  "Property": "paper_note"
+                }
+              },
+              "queryRef": "weekly.paper_note",
+              "nativeQueryRef": "paper_note"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Weekly counts and tone (source: dbt mart fct_weekly_counts)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

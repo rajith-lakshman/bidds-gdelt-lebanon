@@ -1,0 +1,17 @@
+# Template for your dbt connection. Copy to ~/.dbt/profiles.yml (NOT into this repo;
+# profiles.yml is git-ignored) and replace the project id.
+#
+# No key file is needed: `method: oauth` uses your own Google login, obtained with
+#   gcloud auth application-default login
+# so there is no secret on disk that could be committed by accident.
+bidds_gdelt:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: YOUR_GCP_PROJECT_ID     # the project that is billed for queries
+      dataset: bidds_gdelt_dev         # where dbt writes views and tables
+      location: US                     # GDELT's public dataset lives in the US multi-region
+      threads: 4
+      maximum_bytes_billed: 200000000000   # hard cap of 200 GB per query; the job fails instead of overspending

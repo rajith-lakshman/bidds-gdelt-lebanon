@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: gdelt
+    description: GDELT 2.0 public tables on BigQuery (partitioned versions)
+    database: gdelt-bq
+    schema: gdeltv2
+    tables:
+      - name: events_partitioned
+      - name: eventmentions_partitioned
+      - name: gkg_partitioned

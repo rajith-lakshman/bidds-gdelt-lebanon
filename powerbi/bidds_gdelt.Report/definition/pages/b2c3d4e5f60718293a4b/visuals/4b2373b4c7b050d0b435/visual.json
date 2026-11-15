@@ -1,0 +1,78 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "4b2373b4c7b050d0b435",
+  "position": {
+    "x": 899.83890667284,
+    "y": 589.86532981024834,
+    "z": 4,
+    "height": 122.28915374114905,
+    "width": 360.32793428541777,
+    "tabOrder": 4
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "urls"
+                    }
+                  },
+                  "Property": "Distinct URLs"
+                }
+              },
+              "queryRef": "urls.Distinct URLs",
+              "nativeQueryRef": "Distinct URLs"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Distinct article URLs'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f47115c34eb9284433c6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "urls"
+              }
+            },
+            "Property": "Distinct URLs"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+table url_check
+	lineageTag: 3435eb93-6616-5fb2-929d-32da31e5bf57
+
+	column url
+		dataType: string
+		lineageTag: 500e54ba-1165-5f60-bdb5-468385283733
+		summarizeBy: none
+		sourceColumn: url
+
+	column status
+		dataType: int64
+		formatString: 0
+		lineageTag: 16d8d92a-4235-52d0-942f-a12cc6c27664
+		summarizeBy: none
+		sourceColumn: status
+
+	column final_url
+		dataType: string
+		lineageTag: 1cc5e2bd-bc66-5bfd-b508-07f08d49c1d8
+		summarizeBy: none
+		sourceColumn: final_url
+
+	column error
+		dataType: string
+		lineageTag: cca5306e-278e-5042-bdcd-506bda44ba3d
+		summarizeBy: none
+		sourceColumn: error
+
+	column check_result
+		dataType: string
+		lineageTag: c0f27ea4-11a7-53ff-97d4-738de82be2bc
+		summarizeBy: none
+		sourceColumn: check_result
+
+	partition url_check = m
+		mode: import
+		source =
+				let
+					FilePath = Text.TrimEnd(RepoFolder, "\") & "\data\url_check.csv",
+					EmptyTable = #table(type table [url = text, status = Int64.Type, final_url = text, error = text], {}),
+					Loaded = try (
+						let
+							Source = Csv.Document(File.Contents(FilePath), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+							Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+							Cleaned = Table.ReplaceValue(Headers, "NA", null, Replacer.ReplaceValue, {"status", "final_url", "error"}),
+							Typed = Table.TransformColumnTypes(Cleaned, {{"url", type text}, {"status", Int64.Type}, {"final_url", type text}, {"error", type text}}, "en-US")
+						in
+							Typed
+					) otherwise EmptyTable,
+					DistinctUrls = Table.Distinct(Loaded, {"url"}),
+					Result = Table.AddColumn(DistinctUrls, "check_result", each if [status] = null then "No response" else if [status] <> 200 then "HTTP error" else if (try (let p = Uri.Parts([final_url])[Path] in p = "" or p = "/") otherwise false) then "Redirected to homepage" else "Live", type text)
+				in
+					Result
+

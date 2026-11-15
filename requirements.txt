@@ -1,0 +1,7 @@
+dbt-bigquery
+pandas
+numpy
+httpx
+matplotlib
+geopandas
+adjustText

@@ -1,0 +1,98 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "938c9197994257c7abae",
+  "position": {
+    "x": 20,
+    "y": 460,
+    "z": 2,
+    "height": 240,
+    "width": 860,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "urls"
+                    }
+                  },
+                  "Property": "iso_week"
+                }
+              },
+              "queryRef": "urls.iso_week",
+              "nativeQueryRef": "iso_week",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "url_check"
+                    }
+                  },
+                  "Property": "check_result"
+                }
+              },
+              "queryRef": "url_check.check_result",
+              "nativeQueryRef": "check_result",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "urls"
+                    }
+                  },
+                  "Property": "Distinct URLs"
+                }
+              },
+              "queryRef": "urls.Distinct URLs",
+              "nativeQueryRef": "Distinct URLs"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Article URLs by ISO week and what the link check found today'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

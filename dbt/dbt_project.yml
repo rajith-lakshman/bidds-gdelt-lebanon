@@ -1,0 +1,26 @@
+name: bidds_gdelt
+version: "0.1.0"
+config-version: 2
+profile: bidds_gdelt
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+vars:
+  country_code: "LE"
+  start_date: "2015-06-01"
+  end_date: "2015-09-30"
+  theme_pattern: "WB_1797_SOLID_WASTE"
+  url_keywords: "garbage|stink|waste"
+
+models:
+  bidds_gdelt:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: table
+    marts:
+      +materialized: table

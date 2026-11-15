@@ -1,0 +1,78 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "934c8c46cec25fec8877",
+  "position": {
+    "x": 340.05540077752676,
+    "y": 20.272533507891019,
+    "z": 1,
+    "height": 136.02216031101071,
+    "width": 300.16428645554765,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "weekly"
+                    }
+                  },
+                  "Property": "Peak case-theme events"
+                }
+              },
+              "queryRef": "weekly.Peak case-theme events",
+              "nativeQueryRef": "Peak case-theme events"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Events in the peak week'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9c0515ba7becaba68003",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "weekly"
+              }
+            },
+            "Property": "Peak case-theme events"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

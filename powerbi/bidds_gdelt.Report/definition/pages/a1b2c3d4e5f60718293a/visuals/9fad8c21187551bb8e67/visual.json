@@ -1,0 +1,78 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "9fad8c21187551bb8e67",
+  "position": {
+    "x": 20.272533507891019,
+    "y": 20.272533507891019,
+    "z": 0,
+    "height": 136.02216031101071,
+    "width": 299.51033376174473,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "weekly"
+                    }
+                  },
+                  "Property": "Peak week (case theme)"
+                }
+              },
+              "queryRef": "weekly.Peak week (case theme)",
+              "nativeQueryRef": "Peak week (case theme)"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Peak week of case-theme events'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "c44fb2c9c847bde70755",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "weekly"
+              }
+            },
+            "Property": "Peak week (case theme)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

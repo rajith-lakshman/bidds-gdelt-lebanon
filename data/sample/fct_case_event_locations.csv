@@ -1,0 +1,35 @@
+geo_name,geo_adm1_code,geo_lat,geo_long,events
+Lebanon,LE,33.8333,35.8333,109
+"Beirut, Beyrouth, Lebanon",LE04,33.8719,35.5097,547
+"Al Qasr Al Jumhuri, Beyrouth, Lebanon",LE04,33.9,35.5,4
+"Sahat Ash Shuhada, Beyrouth, Lebanon",LE04,33.9,35.5,56
+"Ashrafiyah, Beyrouth, Lebanon",LE04,33.8861,35.5194,2
+"Grand Serail, Beyrouth, Lebanon",LE04,33.8961,35.5008,20
+"Serail, Mont-Liban, Lebanon",LE05,33.8344,35.5403,4
+"Choueifat, Mont-Liban, Lebanon",LE05,33.8086,35.5178,1
+"Chouf, Mont-Liban, Lebanon",LE05,33.6504,35.5324,16
+"Ain Drafil, Mont-Liban, Lebanon",LE05,33.7497,35.5072,1
+"Baabda, Mont-Liban, Lebanon",LE05,33.8339,35.5442,24
+"Al Fayyadiyah, Mont-Liban, Lebanon",LE05,33.8475,35.5528,1
+"Hbaline, Mont-Liban, Lebanon",LE05,34.1594,35.6856,7
+"Khaldah, Mont-Liban, Lebanon",LE05,33.7833,35.4833,1
+"Ain Dara, Mont-Liban, Lebanon",LE05,33.7806,35.7247,15
+"Mazboud, Mont-Liban, Lebanon",LE05,33.6108,35.4803,3
+"Jbeil, Mont-Liban, Lebanon",LE05,34.1252,35.7991,16
+"Saida, Liban-Sud, Lebanon",LE06,33.5631,35.3689,1
+"Bisri, Liban-Sud, Lebanon",LE06,33.5783,35.5403,8
+"Majdal Anjar, Béa, Lebanon",LE08,33.7083,35.9025,4
+"Bekaa Valley, Béa, Lebanon",LE08,33.8333,36,12
+"Bekaa, Béa, Lebanon",LE08,33.6667,35.8333,47
+"Derbas, Béa, Lebanon",LE08,33.7117,35.9206,16
+"Rashayya, Béa, Lebanon",LE08,33.5019,35.845,8
+"Zahle, Béa, Lebanon",LE08,33.8497,35.9042,2
+"Saadnayel, Béa, Lebanon",LE08,33.8203,35.8808,4
+"Taalabaya, Béa, Lebanon",LE08,33.8136,35.8644,2
+"Beddawi, Liban-Nord, Lebanon",LE09,34.4469,35.8678,18
+"Halba, AakkâLE, Lebanon",LE10,34.5428,36.0797,5
+"Qabbani, AakkâLE, Lebanon",LE10,34.6764,36.3267,1
+"Srar, AakkâLE, Lebanon",LE10,34.6167,36.1333,9
+"Akkar, AakkâLE, Lebanon",LE10,34.5428,36.0797,115
+"Arsal, Mohafazat Baalbek-Hermel, Lebanon",LE11,34.1794,36.4208,21
+"Brital, Mohafazat Baalbek-Hermel, Lebanon",LE11,33.9342,36.1494,9

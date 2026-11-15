@@ -1,0 +1,4 @@
+relationship d85158f4-33a9-5f88-bd81-bd0d269677a5
+	fromColumn: urls.url
+	toColumn: url_check.url
+

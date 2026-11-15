@@ -1,0 +1,150 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "688c7001269052bba196",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "z": 0,
+    "height": 420,
+    "width": 480,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "locations"
+                    }
+                  },
+                  "Property": "geo_name"
+                }
+              },
+              "queryRef": "locations.geo_name",
+              "nativeQueryRef": "geo_name",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "locations"
+                    }
+                  },
+                  "Property": "location_level"
+                }
+              },
+              "queryRef": "locations.location_level",
+              "nativeQueryRef": "location_level",
+              "active": true
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "locations"
+                        }
+                      },
+                      "Property": "events"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(locations.events)",
+              "nativeQueryRef": "Sum of events"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "locations"
+                        }
+                      },
+                      "Property": "geo_long"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(locations.geo_long)",
+              "nativeQueryRef": "Average of geo_long",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "locations"
+                        }
+                      },
+                      "Property": "geo_lat"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(locations.geo_lat)",
+              "nativeQueryRef": "Average of geo_lat"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Where events were located (longitude vs latitude, size = events)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

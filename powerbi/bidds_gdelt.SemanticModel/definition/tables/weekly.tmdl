@@ -1,0 +1,139 @@
+table weekly
+	lineageTag: c27f2e9a-0732-518e-a121-644e04cdedfd
+
+	measure 'Merged events' = SUM(weekly[merged_events])
+		formatString: #,0
+		lineageTag: 1359dfbe-456c-54f0-afda-21a9b894c20d
+
+	measure 'Case-theme events' = SUM(weekly[case_theme_events])
+		formatString: #,0
+		lineageTag: fc40af03-01f2-5a8b-8bb7-353fb8f917b7
+
+	measure 'Protest-theme events' = SUM(weekly[protest_theme_events])
+		formatString: #,0
+		lineageTag: 259b496c-fe0d-587e-b2de-5eacb644c747
+
+	measure 'Case-theme share' = DIVIDE([Case-theme events], [Merged events])
+		formatString: 0.00%
+		lineageTag: be70c35d-bf3a-552b-ba43-20052ef268ff
+
+	measure 'Average tone' = DIVIDE(SUMX(weekly, weekly[case_theme_avg_tone] * weekly[case_theme_events]), [Case-theme events])
+		formatString: 0.00
+		lineageTag: e61bc236-c2ea-55f0-bb0a-3592e298438a
+
+	measure 'Peak case-theme events' = MAXX(ALL(weekly), weekly[case_theme_events])
+		formatString: #,0
+		lineageTag: d0e92288-5d9e-5ae2-9016-adc0c361bf61
+
+	measure 'Peak week (case theme)' =
+			VAR peak = MAXX(ALL(weekly), weekly[case_theme_events])
+			RETURN
+			    CALCULATE(MIN(weekly[iso_week]), FILTER(ALL(weekly), weekly[case_theme_events] = peak))
+		formatString: 0
+		lineageTag: 8265515e-b4ce-50b5-9f0d-3216b2a3e7b1
+
+	measure 'Lowest-tone week (10+ events)' =
+			VAR lowest =
+			    MINX(FILTER(ALL(weekly), weekly[case_theme_events] >= 10), weekly[case_theme_avg_tone])
+			RETURN
+			    CALCULATE(MIN(weekly[iso_week]), FILTER(ALL(weekly), weekly[case_theme_avg_tone] = lowest))
+		formatString: 0
+		lineageTag: ea110dba-bd46-5ee9-b5c7-8fa3cc4fea9a
+
+	column iso_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 4fe5e2a7-6dd1-552f-936f-a7f2f13bb7fb
+		summarizeBy: none
+		sourceColumn: iso_year
+
+	column iso_week
+		dataType: int64
+		formatString: 0
+		lineageTag: 75e10863-8509-5e80-8a91-aebc13a98405
+		summarizeBy: none
+		sourceColumn: iso_week
+
+	column total_events
+		dataType: int64
+		formatString: #,0
+		lineageTag: 5b4d7174-466f-57de-a723-aa7ec3714809
+		summarizeBy: none
+		sourceColumn: total_events
+
+	column protest_code_events
+		dataType: int64
+		formatString: #,0
+		lineageTag: 68ffdfce-cc22-57cf-97f6-785f0fbdac49
+		summarizeBy: none
+		sourceColumn: protest_code_events
+
+	column merged_events
+		dataType: int64
+		formatString: #,0
+		lineageTag: 1513d88d-659a-5e6f-8028-fd2e379acd1e
+		summarizeBy: none
+		sourceColumn: merged_events
+
+	column case_theme_events
+		dataType: int64
+		formatString: #,0
+		lineageTag: 26e37c5b-fc42-504f-a412-8767338d4618
+		summarizeBy: none
+		sourceColumn: case_theme_events
+
+	column protest_theme_events
+		dataType: int64
+		formatString: #,0
+		lineageTag: 23805d8a-ca07-5382-8f79-434bb6efa4f6
+		summarizeBy: none
+		sourceColumn: protest_theme_events
+
+	column url_keyword_events
+		dataType: int64
+		formatString: #,0
+		lineageTag: b8485684-0d4f-5b19-9dc1-d8e84c926ab0
+		summarizeBy: none
+		sourceColumn: url_keyword_events
+
+	column any_case_signal_events
+		dataType: int64
+		formatString: #,0
+		lineageTag: 71659bea-10ed-5910-934b-ec0e8e10e64b
+		summarizeBy: none
+		sourceColumn: any_case_signal_events
+
+	column case_theme_avg_tone
+		dataType: double
+		formatString: 0.00
+		lineageTag: e034995f-53eb-5282-9bd5-cad470a1e11c
+		summarizeBy: none
+		sourceColumn: case_theme_avg_tone
+
+	column week_start
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 1539367d-8c75-591c-8b23-a0c1882758d9
+		summarizeBy: none
+		sourceColumn: week_start
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column paper_note
+		dataType: string
+		lineageTag: 7c422533-3ae9-5756-9ccf-34437feb5023
+		summarizeBy: none
+		sourceColumn: paper_note
+
+	partition weekly = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(Text.TrimEnd(RepoFolder, "\") & "\data\sample\fct_weekly_counts.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"iso_year", Int64.Type}, {"iso_week", Int64.Type}, {"total_events", Int64.Type}, {"protest_code_events", Int64.Type}, {"merged_events", Int64.Type}, {"case_theme_events", Int64.Type}, {"protest_theme_events", Int64.Type}, {"url_keyword_events", Int64.Type}, {"any_case_signal_events", Int64.Type}, {"case_theme_avg_tone", type number}}, "en-US"),
+					WeekStart = Table.AddColumn(Typed, "week_start", each Date.AddDays(Date.AddDays(#date([iso_year], 1, 4), -Date.DayOfWeek(#date([iso_year], 1, 4), Day.Monday)), ([iso_week] - 1) * 7), type date),
+					Notes = Table.AddColumn(WeekStart, "paper_note", each if [iso_week] = 29 then "Naameh landfill closes, 17 Jul (paper)" else if [iso_week] = 31 then "You Stink first demonstration, 28 Jul (paper)" else if [iso_week] = 35 then "Mass protests, late Aug (paper)" else null, type text)
+				in
+					Notes
+

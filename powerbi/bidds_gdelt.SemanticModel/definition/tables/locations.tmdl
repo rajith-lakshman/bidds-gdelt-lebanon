@@ -1,0 +1,57 @@
+table locations
+	lineageTag: af7e3669-663c-5139-aa89-f72f43fa52e2
+
+	measure 'Events (located)' = SUM(locations[events])
+		formatString: #,0
+		lineageTag: 3e27cff3-ff78-5dcb-b2bc-fe0baa3e6fa6
+
+	column geo_name
+		dataType: string
+		lineageTag: 9bc24294-811a-54ca-bbe2-f54aa353b80c
+		summarizeBy: none
+		sourceColumn: geo_name
+
+	column geo_adm1_code
+		dataType: string
+		lineageTag: 1857804b-716a-5dc2-b581-3cfd85b9a2aa
+		summarizeBy: none
+		sourceColumn: geo_adm1_code
+
+	column geo_lat
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 19f83e65-90a8-5ad9-a11f-0107b624ecfc
+		summarizeBy: none
+		sourceColumn: geo_lat
+
+	column geo_long
+		dataType: double
+		formatString: 0.0000
+		lineageTag: cc2e7e18-904d-599e-8cda-0cc50a974e65
+		summarizeBy: none
+		sourceColumn: geo_long
+
+	column events
+		dataType: int64
+		formatString: #,0
+		lineageTag: 4e93df1d-c31d-5408-b9c1-e5fc1be2f8d1
+		summarizeBy: none
+		sourceColumn: events
+
+	column location_level
+		dataType: string
+		lineageTag: 8b2f4d9a-6d67-544f-b96b-d48dc00c6abf
+		summarizeBy: none
+		sourceColumn: location_level
+
+	partition locations = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(Text.TrimEnd(RepoFolder, "\") & "\data\sample\fct_case_event_locations.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"geo_name", type text}, {"geo_adm1_code", type text}, {"geo_lat", type number}, {"geo_long", type number}, {"events", Int64.Type}}, "en-US"),
+					Level = Table.AddColumn(Typed, "location_level", each if [geo_adm1_code] = "LE" then "Country centroid" else "Sub-national", type text)
+				in
+					Level
+

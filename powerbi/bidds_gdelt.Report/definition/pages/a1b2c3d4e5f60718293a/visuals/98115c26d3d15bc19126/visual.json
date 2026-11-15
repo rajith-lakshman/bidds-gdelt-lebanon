@@ -1,0 +1,78 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "98115c26d3d15bc19126",
+  "position": {
+    "x": 659.8382680471625,
+    "y": 20.272533507891019,
+    "z": 2,
+    "height": 136.02216031101071,
+    "width": 300.16428645554765,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "weekly"
+                    }
+                  },
+                  "Property": "Lowest-tone week (10+ events)"
+                }
+              },
+              "queryRef": "weekly.Lowest-tone week (10+ events)",
+              "nativeQueryRef": "Lowest-tone week (10+ events)"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Lowest-tone week (10+ events)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "16d89de6372843068455",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "weekly"
+              }
+            },
+            "Property": "Lowest-tone week (10+ events)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

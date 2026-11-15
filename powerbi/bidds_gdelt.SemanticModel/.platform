@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "bidds_gdelt"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "6ba90801-02de-54c3-bf5c-e01e16b61dde"
+  }
+}

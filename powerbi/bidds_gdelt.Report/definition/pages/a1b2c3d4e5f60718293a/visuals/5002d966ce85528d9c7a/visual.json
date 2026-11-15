@@ -1,0 +1,78 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "5002d966ce85528d9c7a",
+  "position": {
+    "x": 980.27508801060117,
+    "y": 20.272533507891019,
+    "z": 3,
+    "height": 136.02216031101071,
+    "width": 279.89175294765664,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "weekly"
+                    }
+                  },
+                  "Property": "Average tone"
+                }
+              },
+              "queryRef": "weekly.Average tone",
+              "nativeQueryRef": "Average tone"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Average tone (event-weighted)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "471edbbb03de42a3c88a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "weekly"
+              }
+            },
+            "Property": "Average tone"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

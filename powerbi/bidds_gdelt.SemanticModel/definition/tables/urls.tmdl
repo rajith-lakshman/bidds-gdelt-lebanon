@@ -1,0 +1,56 @@
+table urls
+	lineageTag: f6981ccc-f29a-5f2f-9153-edc60f099876
+
+	measure 'Distinct URLs' = DISTINCTCOUNT(urls[url])
+		formatString: #,0
+		lineageTag: 4f1120d5-5bd4-5be2-a027-370ff219bdcb
+
+	measure 'URLs checked' = CALCULATE(COUNTROWS(urls), url_check[check_result] <> "")
+		formatString: #,0
+		lineageTag: 2e30d868-3449-5595-9b4c-e7fa9cc7198d
+
+	measure 'Live URLs' = CALCULATE(COUNTROWS(urls), url_check[check_result] = "Live")
+		formatString: #,0
+		lineageTag: 0d568bf2-856a-5d97-a7b3-1ef9023c56a9
+
+	measure 'Live share' = DIVIDE([Live URLs], [URLs checked])
+		formatString: 0.0%
+		lineageTag: 4030dcdf-972e-57b3-a7e1-b8dd7beb2e85
+
+	column url
+		dataType: string
+		lineageTag: 5b269059-5267-5835-b97b-8bab6c9e2abd
+		summarizeBy: none
+		sourceColumn: url
+
+	column iso_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 700369bc-f8f1-5a1c-b87c-3be9f9418362
+		summarizeBy: none
+		sourceColumn: iso_year
+
+	column iso_week
+		dataType: int64
+		formatString: 0
+		lineageTag: 2cfe2548-7ad2-5ace-b5e4-08ad188a3f4c
+		summarizeBy: none
+		sourceColumn: iso_week
+
+	column events_linked
+		dataType: int64
+		formatString: #,0
+		lineageTag: 7dbe78a7-a7ff-5591-a7a4-77f64db58f80
+		summarizeBy: none
+		sourceColumn: events_linked
+
+	partition urls = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(Text.TrimEnd(RepoFolder, "\") & "\data\sample\fct_case_event_urls.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"url", type text}, {"iso_year", Int64.Type}, {"iso_week", Int64.Type}, {"events_linked", Int64.Type}}, "en-US")
+				in
+					Typed
+
